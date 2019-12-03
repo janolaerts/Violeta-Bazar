@@ -44,11 +44,11 @@
     animation: reveal 1.5s forwards;
   }
 
-  .shop-container .card-footer button {
+  .shop-container .card-footer button, .shop-container .card-footer a {
     border: 2px solid midnightblue;
   }
 
-  .shop-container .card-footer button:hover {
+  .shop-container .card-footer button:hover, .shop-container .card-footer a:hover {
     background-color: lightgray;
   }
 
@@ -90,8 +90,8 @@
       </div>
     </div>
   </nav>
-  <div class="container shop-container">
 
+  <div class="container shop-container">
     <div class="row">
       <% products.map(item => { %>
         <div class="col-sm-12 col-md-3">
@@ -102,9 +102,7 @@
                 <p class="card-text">Product description</p>
               </div>
               <div class="card-footer">
-
                 <div class="row clearfix mx-auto">
-
                   <div class="col-xs-6 mx-auto">
                     <button class="btn add">
                       <svg id="i-cart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="color: midnightblue;">
@@ -115,23 +113,41 @@
                       <span style="color: midnightblue;">Añadir</span>
                     </button>
                   </div>
-    
                   <div class="col-xs-6 mx-auto">
-                    <button class="btn info">
+                    <a href=<%= `/products?name=${item.name}&price=${item.price}&img=${item.img}` %> class="btn info">
                       <svg id="i-plus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="color: midnightblue;">
                         <path d="M16 2 L16 30 M2 16 L30 16" />
                       </svg>
                       <span style="color: midnightblue;">Info</span>
-                    </button>
+                    </a>
                   </div>
-
                 </div>
-
               </div>
             </div>
           </div>
       <% }) %>
     </div>
   </div>
+
+  <!--<div class="modal fade" tabindex="-1" role="dialog" id="productModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">product.name</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Product description</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn">Añadir</button>
+          <button type="button" class="btn" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>-->
+
 </body>
 </html>
