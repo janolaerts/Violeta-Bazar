@@ -1,5 +1,8 @@
 const express = require('express');
 const routes = require('./routes');
+const mongoose = require('mongoose');
+const keys = require('./keys');
+const Product = require('./products-model');
 
 const app = express();
 
@@ -10,16 +13,13 @@ app.use(express.static('public'));
 app.use('/', routes);
 
 app.get('/', (req, res) => {
-  res.render('shop', { products: products });
+  const products = Product.find().then(products => res.render('shop', { products: products }));
 })
 
 app.listen(3000, () => {
   console.log('app is listening to port 3000');
 })
 
-const products = [
-  { name: 'Lisador', price: 5, img: 'products/hair straightener.png' },
-  { name: 'Colágeno', price: 10, img: 'products/collagen.png' },
-  { name: 'Lipo cream', price: 15, img: 'products/lipo cream.png' },
-  { name: 'Afeitador', price: 20, img: 'products/razor.png' }
-];
+mongoose.connect(keys.mongodb.dbURI, { useNewUrlParser: true },  () => {
+  console.log('connected to mongodb');
+})
