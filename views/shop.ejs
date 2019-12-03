@@ -1,0 +1,137 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tienda Violeta Bazar</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+
+<style>
+  .navbar form input {
+    border-radius: 0px;
+    border: 1px solid white;
+  }
+
+  .navbar form button {
+    color: white;
+    border-radius: 0px;
+    border: 1px solid white;
+  }
+
+  .navbar form button:hover {
+    background: midnightblue;
+    border: 1px solid midnightblue;
+  }
+
+  .shop-container {
+    margin-top: 80px;
+  }
+
+  .shop-container .card {
+    margin-bottom: 25px;
+  }
+
+  .shop-container .card img {
+    cursor: pointer;
+    opacity: .4;
+  }
+
+  .shop-container .card img:hover {
+    animation: reveal 1.5s forwards;
+  }
+
+  .shop-container .card-footer button {
+    border: 2px solid midnightblue;
+  }
+
+  .shop-container .card-footer button:hover {
+    background-color: lightgray;
+  }
+
+  /* animations */
+  @keyframes reveal {
+    from {
+      opacity: .4;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+</style>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-primary fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/"><img src="logo.png" width="80px" alt="logo"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> 
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link font-weight-bold" style="color: midnightblue;" href="/">Tienda</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="/about">Nosotros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="/contact">Contacto</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Buscar productos" aria-label="Buscar">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <div class="container shop-container">
+
+    <div class="row">
+      <% products.map(item => { %>
+        <div class="col-sm-12 col-md-3">
+            <div class="card">
+              <img src="<%= item.img %>" class="card-img-top img-fluid">
+              <div class="card-body">
+                <h5 class="card-title"><%= item.name %></h5>
+                <p class="card-text">Product description</p>
+              </div>
+              <div class="card-footer">
+
+                <div class="row clearfix mx-auto">
+
+                  <div class="col-xs-6 mx-auto">
+                    <button class="btn add">
+                      <svg id="i-cart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="color: midnightblue;">
+                        <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
+                        <circle cx="25" cy="27" r="2" />
+                        <circle cx="12" cy="27" r="2" />
+                      </svg>
+                      <span style="color: midnightblue;">Añadir</span>
+                    </button>
+                  </div>
+    
+                  <div class="col-xs-6 mx-auto">
+                    <button class="btn info">
+                      <svg id="i-plus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="color: midnightblue;">
+                        <path d="M16 2 L16 30 M2 16 L30 16" />
+                      </svg>
+                      <span style="color: midnightblue;">Info</span>
+                    </button>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+      <% }) %>
+    </div>
+  </div>
+</body>
+</html>
