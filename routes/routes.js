@@ -14,7 +14,12 @@ router.get('/products', (req, res) => {
 })
 
 router.get('/add-to-cart', (req, res) => {
-  new Cart(req.query);
+  new Cart({
+    name: req.query.name,
+    price: req.query.price,
+    img: req.query.img,
+    id: req.query._id
+  }).save().then(item => console.log(item));
 })
 
 module.exports = router;
