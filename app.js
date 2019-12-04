@@ -1,10 +1,12 @@
 const express = require('express');
-const routes = require('./routes');
+const routes = require('./routes/routes');
 const mongoose = require('mongoose');
 const keys = require('./keys');
-const Product = require('./products-model');
+const Product = require('./mongodb/products-model');
 
 const app = express();
+
+app.locals = require('./helpers');
 
 app.set('view engine', 'ejs');
 
@@ -13,7 +15,11 @@ app.use(express.static('public'));
 app.use('/', routes);
 
 app.get('/', (req, res) => {
-  Product.find().then(products => res.render('shop', { products: products }));
+  Product.find().then(products => res.render('shop', { products: products, cart: app.locals.cart }));
+})
+
+app.get('/cart', (req, res) => {
+  res.render('cart', { cart: app.locals.cart });
 })
 
 app.listen(3000, () => {

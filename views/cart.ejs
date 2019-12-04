@@ -10,25 +10,6 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 
-<style>
-  .product-details-container {
-    margin-top: 75px;
-  }
-
-  .product-details-container h1 {
-    margin-bottom: 20px;
-  }
-
-  .product-details-container a {
-    border: 2px solid midnightblue;
-    margin: 5px 0px;
-  }
-
-  .product-details-container a:hover {
-    background-color: lightsalmon;
-  }
-</style>
-
 <body>
   <nav class="navbar navbar-expand-lg fixed-top" style="background-color: midnightblue;">
     <div class="container">
@@ -56,30 +37,15 @@
     </div>
   </nav>
 
-  <div class="container product-details-container">
-    <h1 class="text-center" style="color: midnightblue;"><%= product.name.replace('-', ' ') %></h1>
-    <div class="row d-flex">
-      <div class="col-xs-12 col-sm-12 col-md-6">
-        <img src="<%= product.img %>" class="img-fluid" >
+  <div class="container cart-container">
+    <div class="row">
+      <h1 class="mx-auto" style="margin-top: 75px; color: midnightblue;">Carrito</h1>
+      <div class="col-xs-12">
+       <% cart.map(item => { %>
+          <h5><%= item.name %></h5>
+        <% }) %>
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-6">
-        <p class="text-justify" style="color: midnightblue;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nulla quo, dolorum, error cupiditate ipsum nihil beatae perspiciatis non minima, consequatur ipsam totam quibusdam velit quasi in temporibus tempora corporis.</p>
-        <a style="display: inline-block;" href="/" class="btn float-left">
-          <svg style="color: midnightblue; vertical-align: middle;" id="i-chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="15" height="15" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
-            <path d="M20 30 L8 16 20 2" />
-          </svg>
-          <span style="color: midnightblue; vertical-align: middle;">Tienda</span>
-        </a>
-        <a href="#" class="btn float-right">
-          <svg id="i-cart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="color: midnightblue; vertical-align: middle;">
-            <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
-            <circle cx="25" cy="27" r="2" />
-            <circle cx="12" cy="27" r="2" />
-          </svg>
-          <span style="color: midnightblue; vertical-align: middle;">Añadir</span>
-        </a>
-      </div>
-    </div>
+    </div> 
   </div>
+
 </body>
-</html>
