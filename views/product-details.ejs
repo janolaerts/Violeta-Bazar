@@ -10,10 +10,20 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 
+<style>
+  .product-details-container {
+    margin-top: 75px;
+  }
+
+  .product-details-container h1 {
+    margin-bottom: 20px;
+  }
+</style>
+
 <body>
   <nav class="navbar navbar-expand-lg fixed-top" style="background-color: midnightblue;">
     <div class="container">
-      <a class="navbar-brand" href="/"><img src="logo.png" width="80px" alt="logo"></a>
+      <a class="navbar-brand" href="/"><img src="/logo.png" width="80px" alt="logo"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon">
           <svg style="color: white;" id="i-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
@@ -26,18 +36,27 @@
           <li class="nav-item">
             <a class="nav-link text-light" href="/">Tienda</a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link font-weight-bold" style="color: white;" href="/about">Nosotros</a>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="/about">Nosotros</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" href="/contact">Contacto</a>
+            <a class="nav-link" style="color: white;" href="/contact">Contacto</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <div class="container about-container">
-    <h1>Hello from About</h1>
+
+  <div class="container product-details-container">
+    <h1 class="text-center" style="color: midnightblue;"><%= product.name.replace('-', ' ') %></h1>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6">
+        <img src="<%= product.img %>" class="img-fluid" >
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-6">
+        <p class="text-justify" style="color: midnightblue;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nulla quo, dolorum, error cupiditate ipsum nihil beatae perspiciatis non minima, consequatur ipsam totam quibusdam velit quasi in temporibus tempora corporis.</p>
+      </div>
+    </div>
   </div>
 </body>
 </html>

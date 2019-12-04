@@ -9,7 +9,7 @@ router.get('/contact', (req, res) => {
 })
 
 router.get('/products', (req, res) => {
-  res.send(req.query);
+  res.render('product-details', { product: req.query });
 })
 
 module.exports = router;
