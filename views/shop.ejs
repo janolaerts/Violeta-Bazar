@@ -115,7 +115,7 @@
               <div class="card-footer">
                 <div class="row clearfix">
                   <div class="col-xs-6 mx-auto">
-                    <a href=<%= `/add-to-cart?name=${item.name.replace(/ /g, "-")}&price=${item.price}&img=${item.img.replace('products/', '')}&id=${item._id}&quantity=1` %> class="btn add" style="display: inline-block;">
+                    <a href=<%= `/add-to-cart?name=${item.name.replace(/ /g, "-")}&price=${item.price}&img=${item.img.replace('products/', '')}&id=${item._id}&quantity=1&offset=${item.price}` %> class="btn add" style="display: inline-block;">
                       <svg id="i-cart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="color: midnightblue; vertical-align: middle;">
                         <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
                         <circle cx="25" cy="27" r="2" />

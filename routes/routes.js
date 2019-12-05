@@ -27,7 +27,8 @@ router.get('/add-to-cart', (req, res) => {
           price: req.query.price,
           img: req.query.img,
           id: req.query._id,
-          quantity: req.query.quantity
+          quantity: req.query.quantity,
+          offset: req.query.price
         }).save().then(item => res.render('shop', { products: products, message: `Añadiste ${req.query.name.replace('-', ' ')} al carrito!` }));
       }
     });
@@ -35,23 +36,32 @@ router.get('/add-to-cart', (req, res) => {
 })
 
 router.get('/cart', (req, res) => {
+  let total = 0;
   Cart.find().then(items => {
-    res.render('cart', { products: items });
+    items.forEach(item => {
+      total = total += item.price;
+    })
+    res.render('cart', { products: items, total: total });
   })
 })
 
 router.get('/add-quantity', (req, res) => {
-  Cart.findOneAndUpdate({ name: req.query.name }, { quantity: req.query.quantity })
-  .then(Cart.find().then(items => {
+  Cart.findOneAndUpdate({ name: req.query.name }, { quantity: req.query.quantity, price: req.query.price })
+  .then(Cart.find().then(() => {
     res.redirect('/cart');
   }))
 })
 
 router.get('/remove-quantity', (req, res) => {
-  Cart.findOneAndUpdate({ name: req.query.name }, { quantity: req.query.quantity })
-  .then(Cart.find().then(items => {
-    res.redirect('/cart');
-  }))
+  if(req.query.quantity == 0) {
+    Cart.findOneAndRemove({ name: req.query.name }).then(res.redirect('/cart'));
+  }
+  else {
+  Cart.findOneAndUpdate({ name: req.query.name }, { quantity: req.query.quantity, price: req.query.price })
+    .then(Cart.find().then(() => {
+      res.redirect('/cart');
+    }))
+  }
 })
 
 module.exports = router;
