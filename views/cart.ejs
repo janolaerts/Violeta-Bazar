@@ -11,6 +11,11 @@
 </head>
 
 <style>
+  .navbar-toggler:focus, .navbar-toggler:active {
+    outline: none;
+    box-shadow: none;
+  }
+
   .cart-container .row div:nth-child(1), .cart-container .row div:nth-child(4) {
     position: relative;
     top: 50px;
@@ -39,8 +44,7 @@
 
     .cart-container .row div:nth-child(1) {
       margin: 0 auto;
-      width: 250px;
-      left: 50px;
+      width: 100%;
     }
 
     .cart-container a svg {
@@ -71,6 +75,13 @@
           <li class="nav-item">
             <a class="nav-link" style="color: white;" href="/contact">Contacto</a>
           </li>
+          <a href="/cart" style="cursor: pointer; position: relative; top: 5px;">
+            <svg style="color: white;" id="i-cart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="30" height="30" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+              <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
+              <circle cx="25" cy="27" r="2" />
+              <circle cx="12" cy="27" r="2" />
+            </svg>
+          </a>
         </ul>
       </div>
     </div>
@@ -79,8 +90,8 @@
   <div class="container cart-container">
     <h1 class="mx-auto d-flex justify-content-center" style="margin: 75px 0px 40px 0px; width: 100%; color: midnightblue;">Carrito</h1>
     <% products.map(item => { %>
-      <div class="row" style="margin: 20px 0px; border-bottom: 2px solid midnightblue;">
-        <div class="col-xs-12 col-md-3 d-flex justify-content-start" style="margin-top: 10px;">
+      <div class="row d-flex justify-content-center" style="margin: 20px 0px; border-bottom: 2px solid midnightblue;">
+        <div class="col-xs-12 col-md-3 d-flex justify-content-center" style="margin-top: 10px;">
           <h5 style="color: midnightblue; margin-right: 15px;"><%= item.quantity %>x</h5>
           <h5 style="color: midnightblue;"><%= item.name.replace('-', ' ') %></h5>
         </div>
@@ -104,8 +115,8 @@
         </div>
       </div> 
     <% }) %>
-    <div class="row d-flex justify-content-end">
-      <div class="col-xs-12">
+    <div class="row d-flex justify-content-center">
+      <div class="col-xs-12 d-flex justify-content-center">
         <h4 style="color: midnightblue;">Precio total: s./<%= total %></h4>
       </div>
     </div>

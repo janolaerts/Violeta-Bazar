@@ -11,6 +11,11 @@
 </head>
 
 <style>
+  .navbar-toggler:focus, .navbar-toggler:active {
+    outline: none;
+    box-shadow: none;
+  }
+
   .navbar form input {
     border-radius: 0px;
     border: 1px solid white;
@@ -141,8 +146,8 @@
 
     <% if(message != null) { %>
       <div class="toast-wrapper d-flex justify-content-center" style="position: relative;">
-        <div class="toast d-flex justify-content-center" style="position: absolute; top: 70%; width: 300px;" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
-          <div class="toast-body" style="color: midnightblue; font-weight: bold;"><%= message %></div>
+        <div class="toast d-flex justify-content-center" style="position: absolute; top: 70%; width: 300px; background-color: midnightblue;" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+          <div class="toast-body" style="color: white; font-weight: bold;"><%= message %></div>
         </div>
       </div>
     <% } %>

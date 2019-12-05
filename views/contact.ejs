@@ -10,6 +10,13 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 
+<style>
+  .navbar-toggler:focus, .navbar-toggler:active {
+    outline: none;
+    box-shadow: none;
+  }
+</style>
+
 <body>
   <nav class="navbar navbar-expand-lg fixed-top" style="background-color: midnightblue;">
     <div class="container">
@@ -32,6 +39,13 @@
           <li class="nav-item active">
             <a class="nav-link font-weight-bold" style="color: white;" href="/contact">Contacto</a>
           </li>
+          <a href="/cart" class="float-right" style="cursor: pointer; position: relative; top: 5px;">
+            <svg style="color: white;" id="i-cart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="30" height="30" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+              <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
+              <circle cx="25" cy="27" r="2" />
+              <circle cx="12" cy="27" r="2" />
+            </svg>
+          </a>
         </ul>
       </div>
     </div>
