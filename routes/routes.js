@@ -33,4 +33,10 @@ router.get('/add-to-cart', (req, res) => {
   })
 })
 
+router.get('/cart', (req, res) => {
+  Cart.find().then(items => {
+    res.render('cart', { items: items });
+  })
+})
+
 module.exports = router;

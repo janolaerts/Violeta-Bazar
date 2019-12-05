@@ -6,8 +6,6 @@ const Product = require('./mongodb/products-model');
 
 const app = express();
 
-app.locals = require('./helpers');
-
 app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
@@ -15,11 +13,7 @@ app.use(express.static('public'));
 app.use('/', routes);
 
 app.get('/', (req, res) => {
-  Product.find().then(products => res.render('shop', { products: products, message: '' }));
-})
-
-app.get('/cart', (req, res) => {
-  res.render('cart', { cart: app.locals.cart });
+  Product.find().then(products => res.render('shop', { products: products, message: null }));
 })
 
 app.listen(3000, () => {
