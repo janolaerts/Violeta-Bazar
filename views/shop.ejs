@@ -138,7 +138,18 @@
           </div>
       <% }) %>
     </div>
+
+    <div class="toast-wrapper d-flex justify-content-center" style="position: relative;">
+      <div class="toast d-flex justify-content-center" style="position: absolute; top: 70%; width: 300px;" role="alert" aria-live="assertive" aria-atomic="true" data-delay="1000">
+        <div class="toast-body" style="color: midnightblue; font-weight: bold;">Test</div>
+      </div>
+    </div>
+
   </div>
+
+  <script>
+    $('.toast').toast('show');
+  </script>
 
 </body>
 </html>

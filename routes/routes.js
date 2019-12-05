@@ -14,12 +14,20 @@ router.get('/products', (req, res) => {
 })
 
 router.get('/add-to-cart', (req, res) => {
-  new Cart({
-    name: req.query.name,
-    price: req.query.price,
-    img: req.query.img,
-    id: req.query._id
-  }).save().then(item => console.log(item));
+  Cart.findOne({name: req.query.name}).then(product => {
+    if(product) {
+      res.redirect('/');
+      return
+    }
+    else {
+      new Cart({
+        name: req.query.name,
+        price: req.query.price,
+        img: req.query.img,
+        id: req.query._id
+      }).save().then(item => res.redirect('/'));
+    }
+  });
 })
 
 module.exports = router;

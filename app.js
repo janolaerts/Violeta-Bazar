@@ -15,7 +15,7 @@ app.use(express.static('public'));
 app.use('/', routes);
 
 app.get('/', (req, res) => {
-  Product.find().then(products => res.render('shop', { products: products, cart: app.locals.cart }));
+  Product.find().then(products => res.render('shop', { products: products, cart: app.locals.cart, message: '' }));
 })
 
 app.get('/cart', (req, res) => {
