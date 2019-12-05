@@ -70,7 +70,7 @@
           </svg>
           <span style="color: midnightblue; vertical-align: middle;">Tienda</span>
         </a>
-        <a href=<%= `/add-to-cart?name=${product.name.replace(/ /g, "-")}&price=${product.price}&img=${product.img.replace('products/', '')}` %> class="btn float-right">
+        <a href=<%= `/add-to-cart?name=${product.name.replace(/ /g, "-")}&price=${product.price}&img=${product.img.replace('products/', '')}&id=${product._id}&quantity=1` %> class="btn float-right">
           <svg id="i-cart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="color: midnightblue; vertical-align: middle;">
             <path d="M6 6 L30 6 27 19 9 19 M27 23 L10 23 5 2 2 2" />
             <circle cx="25" cy="27" r="2" />

@@ -18,7 +18,7 @@ router.get('/add-to-cart', (req, res) => {
   Product.find().then(products => {
     Cart.findOne({name: req.query.name}).then(product => {
       if(product) {
-        res.render('shop', { products: products, message: `${req.query.name} ya está en el carrito!` });
+        res.render('shop', { products: products, message: `${req.query.name.replace('-', ' ')} ya está en el carrito!` });
         return
       }
       else {
@@ -26,8 +26,9 @@ router.get('/add-to-cart', (req, res) => {
           name: req.query.name,
           price: req.query.price,
           img: req.query.img,
-          id: req.query._id
-        }).save().then(item => res.render('shop', { products: products, message: `Añadiste ${req.query.name} al carrito!` }));
+          id: req.query._id,
+          quantity: req.query.quantity
+        }).save().then(item => res.render('shop', { products: products, message: `Añadiste ${req.query.name.replace('-', ' ')} al carrito!` }));
       }
     });
   })
@@ -35,7 +36,7 @@ router.get('/add-to-cart', (req, res) => {
 
 router.get('/cart', (req, res) => {
   Cart.find().then(items => {
-    res.render('cart', { items: items });
+    res.render('cart', { products: items });
   })
 })
 

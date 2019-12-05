@@ -10,6 +10,45 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 
+<style>
+  .cart-container .row div:nth-child(1), .cart-container .row div:nth-child(4) {
+    position: relative;
+    top: 50px;
+  }
+
+  .cart-container a {
+    border: 2px solid midnightblue;
+    margin: 5px 5px;
+    width: 75px;
+  }
+
+  .cart-container a svg {
+    position: relative;
+    top: 50px;
+  }
+
+  .cart-container a:hover {
+    background-color: lightsalmon;
+  }
+
+  @media all and (max-width: 767px) {
+    .cart-container .row div:nth-child(1), .cart-container .row div:nth-child(4) {
+      position: relative;
+      top: auto;
+    }
+
+    .cart-container .row div:nth-child(1) {
+      margin: 0 auto;
+      width: 250px;
+      left: 50px;
+    }
+
+    .cart-container a svg {
+      top: auto;
+    }
+  }
+</style>
+
 <body>
   <nav class="navbar navbar-expand-lg fixed-top" style="background-color: midnightblue;">
     <div class="container">
@@ -38,14 +77,33 @@
   </nav>
 
   <div class="container cart-container">
-    <div class="row">
-      <h1 class="mx-auto" style="margin-top: 75px; color: midnightblue;">Carrito</h1>
-      <div class="col-xs-12">
-       <% items.map(item => { %>
-          <h5><%= item.name %></h5>
-        <% }) %>
-      </div>
-    </div> 
+    <h1 class="mx-auto d-flex justify-content-center" style="margin: 75px 0px 40px 0px; width: 100%; color: midnightblue;">Carrito</h1>
+    <% products.map(item => { %>
+      <div class="row" style="margin: 20px 0px; border-bottom: 2px solid midnightblue;">
+        <div class="col-xs-12 col-md-3 d-flex justify-content-start" style="margin-top: 10px;">
+          <h5 style="color: midnightblue; margin-right: 15px;"><%= item.quantity %>x</h5>
+          <h5 style="color: midnightblue;"><%= item.name.replace('-', ' ') %></h5>
+        </div>
+        <div class="col-xs-12 col-md-3 d-flex justify-content-center" style="margin-top: 10px;">
+          <img src="products/<%= item.img %>" style="width: 100px; margin-bottom: 10px;">
+        </div>
+        <div class="col-xs-12 col-md-3 d-flex justify-content-center">
+          <a class="btn float-left">
+            <svg style="color: midnightblue;" id="i-minus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+              <path d="M2 16 L30 16" />
+            </svg>
+          </a>
+          <a class="btn float-right">
+            <svg style="color: midnightblue;" id="i-plus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+              <path d="M16 2 L16 30 M2 16 L30 16" />
+            </svg>
+          </a>
+        </div>
+        <div class="col-xs-12 col-md-3 d-flex justify-content-center" style="margin-top: 10px;">
+          <h5 style="color: midnightblue;">s./<%= item.price %></h5>
+        </div>
+      </div> 
+    <% }) %>
   </div>
 
 </body>
