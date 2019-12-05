@@ -23,3 +23,5 @@ app.listen(3000, () => {
 mongoose.connect(keys.mongodb.dbURI, { useNewUrlParser: true },  () => {
   console.log('connected to mongodb');
 })
+
+mongoose.set('useFindAndModify', false);

@@ -88,12 +88,12 @@
           <img src="products/<%= item.img %>" style="width: 100px; margin-bottom: 10px;">
         </div>
         <div class="col-xs-12 col-md-3 d-flex justify-content-center">
-          <a class="btn float-left">
+          <a href=<%= `/remove-quantity?name=${item.name}&quantity=${item.quantity -1}&price=${item.price}` %> class="btn float-left">
             <svg style="color: midnightblue;" id="i-minus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
               <path d="M2 16 L30 16" />
             </svg>
           </a>
-          <a class="btn float-right">
+          <a href=<%= `/add-quantity?name=${item.name}&quantity=${item.quantity +1}&price=${item.price}` %> class="btn float-right">
             <svg style="color: midnightblue;" id="i-plus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
               <path d="M16 2 L16 30 M2 16 L30 16" />
             </svg>

@@ -40,4 +40,18 @@ router.get('/cart', (req, res) => {
   })
 })
 
+router.get('/add-quantity', (req, res) => {
+  Cart.findOneAndUpdate({ name: req.query.name }, { quantity: req.query.quantity })
+  .then(Cart.find().then(items => {
+    res.render('cart', { products: items });
+  }))
+})
+
+router.get('/remove-quantity', (req, res) => {
+  Cart.findOneAndUpdate({ name: req.query.name }, { quantity: req.query.quantity })
+  .then(Cart.find().then(items => {
+    res.render('cart', { products: items });
+  }))
+})
+
 module.exports = router;
