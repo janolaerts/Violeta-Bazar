@@ -68,6 +68,7 @@ router.get('/remove-quantity', (req, res) => {
 })
 
 router.post('/filter-products', urlencodedParser, (req, res) => {
+  let products = [];
   const capitalize = ([...term]) => {
     term.forEach((letter, index) => {
       if(index == 0 || term[index - 1] == ' ') {
@@ -75,9 +76,13 @@ router.post('/filter-products', urlencodedParser, (req, res) => {
         term[index] = capital;
       }
     })
-    Product.find({ name: term.join('') }).then(products => {
-      res.render('shop', { products: products, message: null, toShop: true });
-    })
+    Product.find().then(items => {
+      items.forEach(item => {
+        if(item.name.includes(term.join(''))) {
+          products.push(item);
+        }
+      })
+    }).then(() => res.render('shop', { products: products, message: null, toShop: true }));
   }
   capitalize([...req.body.term]);
 })
