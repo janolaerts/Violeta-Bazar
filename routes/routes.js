@@ -46,7 +46,7 @@ router.get('/cart', (req, res) => {
     items.forEach(item => {
       total = total += item.price;
     })
-    res.render('cart', { products: items, total: total, stripePublishableKey: keys.stripe.publishable });
+    res.render('cart', { products: items, total: total, message: null });
   })
 })
 
@@ -103,9 +103,17 @@ router.post('/charge', urlencodedParser, (req, res) => {
     customer: customer.id
   }))
   .then(charge => {
-    res.redirect('cart');
+    Cart.remove().then(products => res.render('cart', { products: [], total: 0, message: 'El pago fue exitsoso!' }));
   })
-  .catch(error => res.redirect('cart'));
+  .catch(error => {
+    let total = 0;
+    Cart.find().then(items => {
+      items.forEach(item => {
+        total = total += item.price;
+      })
+      res.render('cart', { products: items, total: total, message: 'Hubo un error con el pago' });
+    })
+  });
 })
 
 module.exports = router;

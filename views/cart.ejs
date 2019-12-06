@@ -105,6 +105,15 @@
 
   <div class="container cart-container">
     <h1 class="mx-auto d-flex justify-content-center" style="margin: 75px 0px 40px 0px; width: 100%; color: midnightblue;">Carrito</h1>
+
+    <% if(message != null) { %>
+      <div class="toast-wrapper d-flex justify-content-center" style="position: absolute; z-index: 1000; left: 50%; top: 15%;">
+        <div class="toast d-flex justify-content-center toast" style="position: absolute; width: 300px; background-color: midnightblue;" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+          <div class="toast-body" style="color: white; font-weight: bold;"><%= message %></div>
+        </div>
+      </div>
+    <% } %>
+
     <% products.map(item => { %>
       <div class="row d-flex justify-content-center" style="margin: 20px 0px; border-bottom: 2px solid midnightblue;">
         <div class="col-xs-12 col-md-3 d-flex justify-content-center" style="margin-top: 10px;">
@@ -139,7 +148,7 @@
       <div class="col-xs-12 col-sm-6 d-flex justify-content-center">
 
         <form action=<%= `/charge?amount=${total}` %> method="POST">
-          <button class="btn checkout" type="submit">
+          <button class="btn checkout" type="submit" data-toggle="tooltip" data-placement="top" title="Use 4242 cuatro veces">
             <svg style="color: midnightblue; vertical-align: middle;" id="i-creditcard" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
               <path d="M2 7 L2 25 30 25 30 7 Z M5 18 L9 18 M5 21 L11 21" />
               <path d="M2 11 L2 13 30 13 30 11 Z" fill="currentColor" />
@@ -169,5 +178,13 @@
     </div>
 
   </div>
+
+  <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+
+    $('.toast').toast('show');
+  </script>
 
 </body>
