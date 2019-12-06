@@ -75,7 +75,6 @@ router.post('/filter-products', urlencodedParser, (req, res) => {
         term[index] = capital;
       }
     })
-    console.log(term.join(''));
     Product.find({ name: term.join('') }).then(products => {
       res.render('shop', { products: products, message: null });
     })
