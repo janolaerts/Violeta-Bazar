@@ -68,7 +68,7 @@ router.get('/remove-quantity', (req, res) => {
 })
 
 router.post('/filter-products', urlencodedParser, (req, res) => {
-  Product.find({ name: req.body.term.toUpperCase() }).then(products => {
+  Product.find({ name: req.body.term }).then(products => {
     res.render('shop', { products: products, message: null });
   })
 })
