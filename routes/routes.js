@@ -1,6 +1,9 @@
 const router = require('express').Router();
 const Product = require('../mongodb/products-model');
 const Cart = require('../mongodb/cart-model');
+const bodyParser = require('body-parser');
+
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 router.get('/about', (req, res) => {
   res.render('about');
@@ -62,6 +65,12 @@ router.get('/remove-quantity', (req, res) => {
       res.redirect('/cart');
     }))
   }
+})
+
+router.post('/filter-products', urlencodedParser, (req, res) => {
+  Product.find({ name: req.body.term }).then(products => {
+    res.render('shop', { products: products, message: null });
+  })
 })
 
 module.exports = router;
