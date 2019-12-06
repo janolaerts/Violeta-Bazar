@@ -13,7 +13,7 @@ app.use(express.static('public'));
 app.use('/', routes);
 
 app.get('/', (req, res) => {
-  Product.find().then(products => res.render('shop', { products: products, message: null }));
+  Product.find().then(products => res.render('shop', { products: products, message: null, toShop: false }));
 })
 
 app.listen(3000, () => {

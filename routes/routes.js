@@ -21,7 +21,7 @@ router.get('/add-to-cart', (req, res) => {
   Product.find().then(products => {
     Cart.findOne({name: req.query.name}).then(product => {
       if(product) {
-        res.render('shop', { products: products, message: `${req.query.name.replace('-', ' ')} ya está en el carrito!` });
+        res.render('shop', { products: products, message: `${req.query.name.replace('-', ' ')} ya está en el carrito!`, toShop: false });
         return
       }
       else {
@@ -32,7 +32,7 @@ router.get('/add-to-cart', (req, res) => {
           id: req.query._id,
           quantity: req.query.quantity,
           offset: req.query.price
-        }).save().then(item => res.render('shop', { products: products, message: `Añadiste ${req.query.name.replace('-', ' ')} al carrito!` }));
+        }).save().then(item => res.render('shop', { products: products, message: `Añadiste ${req.query.name.replace('-', ' ')} al carrito!`, toShop: false }));
       }
     });
   })
@@ -76,7 +76,7 @@ router.post('/filter-products', urlencodedParser, (req, res) => {
       }
     })
     Product.find({ name: term.join('') }).then(products => {
-      res.render('shop', { products: products, message: null });
+      res.render('shop', { products: products, message: null, toShop: true });
     })
   }
   capitalize([...req.body.term]);
