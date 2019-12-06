@@ -89,4 +89,8 @@ router.post('/filter-products', urlencodedParser, (req, res) => {
   capitalize([...req.body.term]);
 })
 
+router.post('/charge', (req, res) => {
+  
+})
+
 module.exports = router;

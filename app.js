@@ -3,6 +3,7 @@ const routes = require('./routes/routes');
 const mongoose = require('mongoose');
 const keys = require('./keys');
 const Product = require('./mongodb/products-model');
+const stripe = require('stripe')(keys.stripe.secret);
 
 const app = express();
 
@@ -16,7 +17,7 @@ app.get('/', (req, res) => {
   Product.find().then(products => res.render('shop', { products: products, message: null, toShop: false }));
 })
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log('app is listening to port 3000');
 })
 
