@@ -5,6 +5,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Tienda Violeta Bazar</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://checkout.stripe.com/checkout.js" defer></script>
+  <script>
+    let stripePublishableKey = '<%= stripePublishableKey %>';
+  </script>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
@@ -27,13 +31,22 @@
     width: 75px;
   }
 
-  .cart-container a svg {
+  .cart-container a.add svg, .cart-container a.remove svg {
     position: relative;
     top: 50px;
   }
 
   .cart-container a:hover {
     background-color: lightsalmon;
+  }
+
+  .cart-container .checkout {
+    width: auto;
+  }
+
+  .cart-container .total-price {
+    position:relative;
+    margin-top: -35px;
   }
 
   /* responsive design */
@@ -49,8 +62,13 @@
       width: 100%;
     }
 
-    .cart-container a svg {
+    .cart-container a.add svg, .cart-container a.remove svg {
       top: auto;
+    }
+
+    .cart-container .total-price {
+      position: relative;
+      margin-top: 10px;
     }
   }
 </style>
@@ -101,12 +119,12 @@
           <img src="products/<%= item.img %>" style="width: 100px; margin-bottom: 10px;">
         </div>
         <div class="col-xs-12 col-md-3 d-flex justify-content-center">
-          <a href=<%= `/remove-quantity?name=${item.name}&quantity=${item.quantity -1}&price=${item.price - item.offset}&offset=${item.offset}` %> class="btn float-left">
+          <a href=<%= `/remove-quantity?name=${item.name}&quantity=${item.quantity -1}&price=${item.price - item.offset}&offset=${item.offset}` %> class="btn float-left remove">
             <svg style="color: midnightblue;" id="i-minus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
               <path d="M2 16 L30 16" />
             </svg>
           </a>
-          <a href=<%= `/add-quantity?name=${item.name}&quantity=${item.quantity +1}&price=${item.price + item.offset}&offset=${item.offset}` %> class="btn float-right">
+          <a href=<%= `/add-quantity?name=${item.name}&quantity=${item.quantity +1}&price=${item.price + item.offset}&offset=${item.offset}` %> class="btn float-right add">
             <svg style="color: midnightblue;" id="i-plus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
               <path d="M16 2 L16 30 M2 16 L30 16" />
             </svg>
@@ -117,10 +135,23 @@
         </div>
       </div> 
     <% }) %>
+
     <div class="row d-flex justify-content-center">
-      <div class="col-xs-12 d-flex justify-content-center">
-        <h4 style="color: midnightblue;">Precio total: s./<%= total %></h4>
+
+      <div class="col-xs-12 col-sm-6 d-flex justify-content-center">
+        <h4 class="d-flex align-middle total-price" style="color: midnightblue;">Precio total: s./<%= total %></h4>
       </div>
+
+      <div class="col-xs-12 col-sm-6 d-flex justify-content-center">
+        <a href="/checkout" class="btn checkout">
+          <svg style="color: midnightblue; vertical-align: middle;" id="i-creditcard" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+            <path d="M2 7 L2 25 30 25 30 7 Z M5 18 L9 18 M5 21 L11 21" />
+            <path d="M2 11 L2 13 30 13 30 11 Z" fill="currentColor" />
+          </svg>
+          <span style="color: midnightblue; vertical-align: middle;">Pagar</span>
+        </a>
+      </div>
+      
     </div>
   </div>
 
