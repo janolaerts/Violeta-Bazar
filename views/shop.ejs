@@ -123,6 +123,14 @@
     </div>
   </nav>
 
+  <% if(message != null) { %>
+    <div class="toast-wrapper d-flex justify-content-center" style="position: absolute; z-index: 1000; left: 50%; top: 15%;">
+      <div class="toast d-flex justify-content-center toast" style="position: absolute; width: 300px; background-color: midnightblue;" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+        <div class="toast-body" style="color: white; font-weight: bold;"><%= message %></div>
+      </div>
+    </div>
+  <% } %>
+
   <div class="container shop-container">
     <div class="row">
       <% products.map(item => { %>
@@ -161,14 +169,6 @@
           </div>
       <% }) %>
     </div>
-
-    <% if(message != null) { %>
-      <div class="toast-wrapper d-flex justify-content-center" style="position: relative;">
-        <div class="toast d-flex justify-content-center" style="position: absolute; top: 70%; width: 300px; background-color: midnightblue;" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
-          <div class="toast-body" style="color: white; font-weight: bold;"><%= message %></div>
-        </div>
-      </div>
-    <% } %>
 
     <% if(toShop) { %>
       <a style="display: inline-block; border: 2px solid midnightblue; margin: 5px 0px;" href="/" class="btn float-left to-shop">

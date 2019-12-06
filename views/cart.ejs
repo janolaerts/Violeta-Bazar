@@ -138,7 +138,7 @@
       </div>
       <div class="col-xs-12 col-sm-6 d-flex justify-content-center">
 
-        <form action="/charge" method="POST">
+        <form action=<%= `/charge?amount=${total}` %> method="POST">
           <button class="btn checkout" type="submit">
             <svg style="color: midnightblue; vertical-align: middle;" id="i-creditcard" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
               <path d="M2 7 L2 25 30 25 30 7 Z M5 18 L9 18 M5 21 L11 21" />
@@ -151,18 +151,18 @@
             src="https://checkout.stripe.com/checkout.js"
             class="stripe-button"
             data-key="pk_test_JqYEkH8szUiNBd5ekTYsTylB00n6FNkQ4K"
-            data-amount=`${total * 100}`
+            data-amount="<%= total * 100 %>"
             data-name="Productos de Violeta Bazar"
-            data-description="Productos de Violeta Bazar"
             data-image="/marketplace.png"
-            data-locale="auto"
+            data-locale="es"
+            data-currency="pen"
             >
           </script>  
         </form>
 
         <script>
           const stripeButton = document.querySelector('.stripe-button-el');
-          stripeButton.style.display = 'none';  
+          stripeButton.style.display = 'none';
         </script>
 
       </div>

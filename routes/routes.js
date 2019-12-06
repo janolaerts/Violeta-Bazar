@@ -89,8 +89,23 @@ router.post('/filter-products', urlencodedParser, (req, res) => {
   capitalize([...req.body.term]);
 })
 
-router.post('/charge', (req, res) => {
+router.post('/charge', urlencodedParser, (req, res) => {
+  let amount = req.query.amount;
   
+  stripe.customers.create({
+    email: req.body.stripeEmail,
+    source: req.body.stripeToken
+  })
+  .then(customer => stripe.charges.create({
+    amount: amount * 100,
+    description: 'Productos de Violeta Bazar',
+    currency: 'pen',
+    customer: customer.id
+  }))
+  .then(charge => {
+    res.redirect('cart');
+  })
+  .catch(error => res.redirect('cart'));
 })
 
 module.exports = router;
