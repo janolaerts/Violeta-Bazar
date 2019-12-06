@@ -106,14 +106,6 @@
   <div class="container cart-container">
     <h1 class="mx-auto d-flex justify-content-center" style="margin: 75px 0px 40px 0px; width: 100%; color: midnightblue;">Carrito</h1>
 
-    <% if(message != null) { %>
-      <div class="toast-wrapper d-flex justify-content-center" style="position: absolute; z-index: 1000; left: 50%; top: 15%;">
-        <div class="toast d-flex justify-content-center toast" style="position: absolute; width: 300px; background-color: midnightblue;" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
-          <div class="toast-body" style="color: white; font-weight: bold;"><%= message %></div>
-        </div>
-      </div>
-    <% } %>
-
     <% products.map(item => { %>
       <div class="row d-flex justify-content-center" style="margin: 20px 0px; border-bottom: 2px solid midnightblue;">
         <div class="col-xs-12 col-md-3 d-flex justify-content-center" style="margin-top: 10px;">

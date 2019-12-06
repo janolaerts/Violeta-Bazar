@@ -46,7 +46,7 @@ router.get('/cart', (req, res) => {
     items.forEach(item => {
       total = total += item.price;
     })
-    res.render('cart', { products: items, total: total, message: null });
+    res.render('cart', { products: items, total: total });
   })
 })
 
@@ -103,7 +103,10 @@ router.post('/charge', urlencodedParser, (req, res) => {
     customer: customer.id
   }))
   .then(charge => {
-    Cart.remove().then(products => res.render('cart', { products: [], total: 0, message: 'El pago fue exitsoso!' }));
+    //Cart.remove().then(() => res.render('success-payment', { products: products }));
+    Cart.find().then(products => {
+      Cart.remove().then(() => res.render('success-payment', { products: products }));
+    })
   })
   .catch(error => {
     let total = 0;
@@ -111,7 +114,7 @@ router.post('/charge', urlencodedParser, (req, res) => {
       items.forEach(item => {
         total = total += item.price;
       })
-      res.render('cart', { products: items, total: total, message: 'Hubo un error con el pago' });
+      res.render('error-payment');
     })
   });
 })
