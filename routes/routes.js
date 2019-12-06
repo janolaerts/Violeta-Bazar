@@ -68,9 +68,19 @@ router.get('/remove-quantity', (req, res) => {
 })
 
 router.post('/filter-products', urlencodedParser, (req, res) => {
-  Product.find({ name: req.body.term }).then(products => {
-    res.render('shop', { products: products, message: null });
-  })
+  const capitalize = ([...term]) => {
+    term.forEach((letter, index) => {
+      if(index == 0 || term[index - 1] == ' ') {
+        let capital = letter.toUpperCase();
+        term[index] = capital;
+      }
+    })
+    console.log(term.join(''));
+    Product.find({ name: term.join('') }).then(products => {
+      res.render('shop', { products: products, message: null });
+    })
+  }
+  capitalize([...req.body.term]);
 })
 
 module.exports = router;
