@@ -134,7 +134,7 @@
   <div class="container shop-container">
     <div class="row">
       <% products.map(item => { %>
-        <div class="col-sm-12 col-md-3">
+        <div class="col-xm-12 col-md-4">
             <div class="card">
               <a href=<%= `/products?name=${item.name.replace(/ /g, "-")}&price=${item.price}&img=${item.img.replace('products/', '')}&id=${item._id}}` %>><img src="<%= item.img %>" class="card-img-top img-fluid"></a>
               <div class="card-body" style="padding: 0;">
