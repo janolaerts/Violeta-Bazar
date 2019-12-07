@@ -15,6 +15,15 @@
     outline: none;
     box-shadow: none;
   }
+
+  .error-payment-container a {
+    border: 2px solid midnightblue;
+    margin: 5px 0px;
+  }
+
+  .error-payment-container a:hover {
+    background-color: lightsalmon;
+  }
 </style>
 
 <body>
@@ -51,8 +60,22 @@
     </div>
   </nav>
 
-  <div class="container error-payment-container d-flex justify-content-center">
-    <h1 style="position: relative; margin-top: 75px;">Hello from Error Payment</h1>
+  <div class="container error-payment-container" style="position: relative; top: 75px;">
+    <div class="row d-flex justify-content-center">
+      <div class="col-xs-12">
+        <h1 style="color: red; border-bottom: 2px solid red; padding-bottom: 5px;">Hubo un error con el pago</h1>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-start" style="margin-top: 5px;">
+      <div class="col-xs-12">
+        <a style="display: inline-block;" href="/cart" class="btn float-left">
+          <svg style="color: midnightblue; vertical-align: middle;" id="i-chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="15" height="15" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M20 30 L8 16 20 2" />
+          </svg>
+          <span style="color: midnightblue; vertical-align: middle;">Inténtalo de nuevo</span>
+        </a>
+      </div>
+    </div>
   </div>
 
 </body>
