@@ -4,6 +4,8 @@ const Cart = require('../mongodb/cart-model');
 const bodyParser = require('body-parser');
 const keys = require('../keys');
 const stripe = require('stripe')(keys.stripe.secret);
+const nodemailer = require('nodemailer');
+const helpers = require('../helpers');
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
@@ -103,13 +105,15 @@ router.post('/charge', urlencodedParser, (req, res) => {
     customer: customer.id
   }))
   .then(charge => {
-    
     Cart.find().then(products => {
       let total = 0;
       products.forEach(product => {
         total = total += product.price;
       })
-      Cart.remove().then(() => res.render('success-payment', { products: products, total: total }));
+      Cart.remove().then(() => {
+        res.render('success-payment', { products: products, total: total });
+        helpers.mailToClient(products, req.body.stripeEmail, total);
+      });
     })
   })
   .catch(error => {

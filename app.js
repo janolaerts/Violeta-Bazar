@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const keys = require('./keys');
 const Product = require('./mongodb/products-model');
 const stripe = require('stripe')(keys.stripe.secret);
+const helpers = require('./helpers');
 
 const app = express();
 
