@@ -103,20 +103,18 @@ router.post('/charge', urlencodedParser, (req, res) => {
     customer: customer.id
   }))
   .then(charge => {
-    //Cart.remove().then(() => res.render('success-payment', { products: products }));
+    
     Cart.find().then(products => {
-      Cart.remove().then(() => res.render('success-payment', { products: products }));
+      let total = 0;
+      products.forEach(product => {
+        total = total += product.price;
+      })
+      Cart.remove().then(() => res.render('success-payment', { products: products, total: total }));
     })
   })
   .catch(error => {
-    let total = 0;
-    Cart.find().then(items => {
-      items.forEach(item => {
-        total = total += item.price;
-      })
       res.render('error-payment');
     })
-  });
 })
 
 module.exports = router;

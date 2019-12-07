@@ -15,6 +15,17 @@
     outline: none;
     box-shadow: none;
   }
+
+  .success-quantity, .success-name, .success-price {
+    position: relative;
+    top: 50px;
+  }
+
+  @media all and (max-width: 767px) {
+    .success-quantity, .success-name, .success-price {
+      top: auto;
+    }
+  }
 </style>
 
 <body>
@@ -59,23 +70,30 @@
     </div>
     <div class="row d-flex justify-content-center" style="margin-top: 5px;">
       <div class="col-xs-12">
-        <h2 style="color: midnightblue;">Resumen de su compra: </h2>
+        <h2 style="color: midnightblue;">Resumen del pedido:</h2>
       </div>
     </div>
 
     <% products.map(item => { %>
-      <div class="row d-flex justify-content-between" style="margin-top: 20px;">
-        <div class="col-xs-12 col-s-4">
-          <h3 style="color: midnightblue;"><%= item.quantity %>x</h3>
+      <div class="row d-flex justify-content-center succes-payment-products" style="margin-top: 20px; border-bottom: 2px solid white; background-color: midnightblue;">
+        <div class="col-xs-12 col-sm-3 d-flex justify-content-center">
+          <h3 class="success-quantity" style="color: white;"><%= item.quantity %>x</h3>
         </div>
-        <div class="col-xs-12 col-s-4">
-          <h3 style="color: midnightblue;"><%= item.name %></h3>
+        <div class="col-xs-12 col-sm-3 d-flex justify-content-center">
+          <h3 class="success-name" style="color: white;"><%= item.name.replace('-', ' ') %></h3>
         </div>
-        <div class="col-xs-12 col-s-4">
-          <h3 style="color: midnightblue;">Image</h3>
+        <div class="col-xs-12 col-sm-3 d-flex justify-content-center">
+          <img src="products/<%= item.img %>" style="width: 100px; margin: 10px 0px;">
+        </div>
+        <div class="col-xs-12 col-sm-3 d-flex justify-content-center">
+          <h3 class="success-price" style="color: white;"><%= item.price %></h3>
         </div>
       </div>
     <% }) %>
+
+    <div class="row d-flex justify-content-end">
+      <h3 style="color: midnightblue;">El precio total fue: s./<%= total %></h3>
+    </div>
 
   </div>
 
