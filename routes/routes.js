@@ -19,7 +19,9 @@ router.get('/contact', (req, res) => {
 })
 
 router.get('/products', (req, res) => {
-  res.render('product-details', { product: req.query });
+  Product.findOne({ name: req.query.name.replace('-', ' ') }).then(item => {
+    res.render('product-details', { product: req.query, description: item.description });
+  });
 })
 
 router.get('/add-to-cart', (req, res) => {
@@ -119,8 +121,8 @@ router.post('/charge', urlencodedParser, (req, res) => {
           amount: `s./${total}`,
           date: new Date()
         }).save().then(item => {
-          helpers.mailToClient(products, req.body.stripeEmail, total, item._id);
-          helpers.mailToCompany(products, req.body.stripeEmail, total, item._id)
+          helpers.mailToClient(products, req.body.stripeEmail, total, item._id, item.date);
+          helpers.mailToCompany(products, req.body.stripeEmail, total, item._id, item.date);
         });
       });
     })

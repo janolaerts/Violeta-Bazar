@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 const keys = require('./keys');
 
 module.exports = {
-  mailToClient: (products, clientEmail, total, orderId) => {
+  mailToClient: (products, clientEmail, total, orderId, date) => {
   
     let transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -19,13 +19,14 @@ module.exports = {
 
     let html = 
       `<h1 style="color: midnightblue;">Muchas gracias por su compra de Violeta Bazar!</h1>
+      <p style="color: midnightblue;>El pedido fue hecho el: ${date}</p>
       <p style="color: midnightblue;">Favor de comentar su dirección a la cual quiere recibir el pedido</p>
       <p style="color: midnightblue; text-decoration: underline;">Resumen de su pedido con Número <strong>${orderId}</strong> </p>
       
       ${products.map(item => {
         return (
           `<div style="background-color: midnightblue; width: 300px;">
-            <h3 style="color: white; position: relative; margin-left: 0px;">${item.quantity}x ${item.name}</h3>
+            <h3 style="color: white; position: relative; margin-left: 0px;">${item.quantity}x ${item.name.replace('-', ' ')}</h3>
           </div>`
         )
       })}
@@ -48,7 +49,7 @@ module.exports = {
       }
     })
   },
-  mailToCompany: (products, clientEmail, total, orderId) => {
+  mailToCompany: (products, clientEmail, total, orderId, date) => {
 
     let transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -65,12 +66,13 @@ module.exports = {
 
     let html = 
     `<h1 style="color: midnightblue;">Hay un nuevo pedido de ${clientEmail}</h1>
+    <p style="color: midnightblue;>El pedido fue hecho el: ${date}</p>
     <p style="color: midnightblue; text-decoration: underline;">Resumen del pedido con Número <strong>${orderId}</strong></p>
     
     ${products.map(item => {
       return (
         `<div style="background-color: midnightblue; width: 300px;">
-          <h3 style="color: white; position: relative; margin-left: 0px;">${item.quantity}x ${item.name}</h3>
+          <h3 style="color: white; position: relative; margin-left: 0px;">${item.quantity}x ${item.name.replace('-', ' ')}</h3>
         </div>`
       )
     })}

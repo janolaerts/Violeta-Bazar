@@ -136,7 +136,7 @@
       <% products.map(item => { %>
         <div class="col-sm-12 col-md-3">
             <div class="card">
-              <a href=<%= `/products?name=${item.name.replace(/ /g, "-")}&price=${item.price}&img=${item.img.replace('products/', '')}&id=${item._id}` %>><img src="<%= item.img %>" class="card-img-top img-fluid"></a>
+              <a href=<%= `/products?name=${item.name.replace(/ /g, "-")}&price=${item.price}&img=${item.img.replace('products/', '')}&id=${item._id}}` %>><img src="<%= item.img %>" class="card-img-top img-fluid"></a>
               <div class="card-body" style="padding: 0;">
                 <div class="card-title text-center clearfix" style="color: midnightblue; margin: 10px 0px;">
                   <h5 class="d-flex float-left"><%= item.name %></h5>
@@ -156,7 +156,7 @@
                     </a>
                   </div>
                   <div class="col-xs-6 mx-auto">
-                    <a style="display: inline-block;" href=<%= `/products?name=${item.name.replace(/ /g, "-")}&price=${item.price}&img=${item.img.replace('products/', '')}&id=${item._id}` %> class="btn info">
+                    <a style="display: inline-block;" href=<%= `/products?name=${item.name.replace(/ /g, "-")}&price=${item.price}&img=${item.img.replace('products/', '')}&id=${item._id}}` %> class="btn info">
                       <svg id="i-plus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="color: midnightblue; vertical-align: middle;">
                         <path d="M16 2 L16 30 M2 16 L30 16" />
                       </svg>
