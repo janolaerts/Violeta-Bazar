@@ -6,6 +6,7 @@ const keys = require('../keys');
 const stripe = require('stripe')(keys.stripe.secret);
 const nodemailer = require('nodemailer');
 const helpers = require('../helpers');
+const Order = require('../mongodb/order-model');
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
@@ -112,7 +113,15 @@ router.post('/charge', urlencodedParser, (req, res) => {
       })
       Cart.remove().then(() => {
         res.render('success-payment', { products: products, total: total });
-        helpers.mailToClient(products, req.body.stripeEmail, total);
+        new Order({
+          client: req.body.stripeEmail,
+          products: products,
+          amount: `s./${total}`,
+          date: new Date()
+        }).save().then(item => {
+          helpers.mailToClient(products, req.body.stripeEmail, total, item._id);
+          helpers.mailToCompany(products, req.body.stripeEmail, total, item._id)
+        });
       });
     })
   })
