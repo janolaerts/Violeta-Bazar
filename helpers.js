@@ -94,5 +94,47 @@ module.exports = {
         console.log(`Email sent: ${info.response}`);
       }
     })
+  },
+  contactToClient: (info) => {
+
+    let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      host: 'mail.google.com',
+      auth: {
+        user: 'VioletaBazarDeco@gmail.com',
+        pass: keys.gmail.pass
+      },
+      secure: false,
+      tls: {
+        rejectUnauthorized: false
+      }
+    });
+
+    let html = 
+    `<h3 style="color: midnightblue;">Muchas gracias por su mensaje a Violeta Bazar!</h3>
+    <p style="color: midnightblue;>Su mensaje fue enviado el: ${new Date()}</p>
+    <p style="color: midnightblue;">Mensaje: </p>
+    <p style="color: midnightblue;"><strong>${info.message}</strong></p>
+    
+    <p style="color: midnightblue;>Le responderemos en breve!</p>`;
+
+    let mailOptions = {
+      from: 'VioletaBazarDeco@gmail.com',
+      to: `${info.email}`,
+      subject: `Muchas gracias por su mensaje!`,
+      html: html
+    };
+
+    transporter.sendMail(mailOptions, (err, info, res) => {
+      if(err) {
+        console.log(err);
+        res.render('contact', { feedback: 'Hubo un error al enviar el mensaje' })
+      }
+      else {
+        console.log(`Email sent: ${info.response}`);
+        res.render('contact', { feedback: 'Su mensaje fue enviado con éxito!' })
+      }
+    })
+
   }
 }

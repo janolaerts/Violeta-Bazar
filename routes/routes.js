@@ -15,7 +15,7 @@ router.get('/about', (req, res) => {
 })
 
 router.get('/contact', (req, res) => {
-  res.render('contact');
+  res.render('contact', { feedback: null });
 })
 
 router.get('/products', (req, res) => {
@@ -130,6 +130,53 @@ router.post('/charge', urlencodedParser, (req, res) => {
   .catch(error => {
       res.render('error-payment');
     })
+})
+
+router.post('/contact', urlencodedParser, (req, res) => {
+
+  const contactToCompany = (info) => {
+
+    let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      host: 'mail.google.com',
+      auth: {
+        user: 'VioletaBazarDeco@gmail.com',
+        pass: keys.gmail.pass
+      },
+      secure: false,
+      tls: {
+        rejectUnauthorized: false
+      }
+    });
+
+    let html = 
+    `<h3 style="color: midnightblue;">Hay un nuevo mensaje de <strong style="text-decoration: underline;">${info.name}</strong> con correo <strong>${info.email}</strong> y número de teléfono <strong style="text-decoration: underline;">${info.phone}</strong></h3>
+    <p style="color: midnightblue;>El pedido fue hecho el: ${new Date()}</p>
+    <p style="color: midnightblue;">Mensaje: </p>
+    <p style="color: midnightblue;"><strong>${info.message}</strong></p>`;
+
+    let mailOptions = {
+      from: `${info.email}`,
+      to: 'VioletaBazarDeco@gmail.com',
+      subject: `Hay un nuevo mensaje de ${info.name}`,
+      html: html
+    };
+
+    transporter.sendMail(mailOptions, (err, info) => {
+      if(err) {
+        console.log(err);
+        res.render('contact', { feedback: 'Hubo un error al enviar el mensaje' })
+      }
+      else {
+        console.log(`Email sent: ${info.response}`);
+        res.render('contact', { feedback: 'Su mensaje fue enviado con éxito!' })
+      }
+    })
+
+  }
+  
+  contactToCompany(req.body)
+  helpers.contactToClient(req.body)
 })
 
 module.exports = router;

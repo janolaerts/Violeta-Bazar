@@ -39,6 +39,8 @@
     border: 2px solid lightsalmon;
   }
 
+  /* responsive design */
+
   @media all and (max-width: 767px) {
     .form-container {
       margin-top: 10px;
@@ -86,16 +88,21 @@
       <h1 style="color: midnightblue;">Estamos para escucharle!</h1>
     </div>
 
+    <% if(feedback != null) { %>
+      <div class="toast-wrapper d-flex justify-content-center" style="position: absolute; z-index: 1000; left: 50%; top: 10%;">
+        <div class="toast d-flex justify-content-center toast" style="position: absolute; width: 300px; background-color: midnightblue;" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+          <div class="toast-body" style="color: white; font-weight: bold;"><%= feedback %></div>
+        </div>
+      </div>
+    <% } %>
+
     <div class="row d-flex justify-content-center form-container">
       <form action="/contact" method="POST" style="background-color: midnightblue; width: 400px; padding: 50px; border-radius: 50px 0px 50px 0px;">
         <div class="col-xs-12" style="margin: 25px 0px;">
-          <input type="text" name="firstName" placeholder="Ingrese su nombre">
+          <input type="text" name="name" placeholder="Ingrese su nombre">
         </div>
         <div class="col-xs-12" style="margin: 50px 0px;">
-          <input type="text" name="lastName" placeholder="Ingrese sus apellidos">
-        </div>
-        <div class="col-xs-12" style="margin: 50px 0px;">
-          <input type="number" name="phone" placeholder="Ingrese su número de teléfono">
+          <input type="number" name="phone" placeholder="Ingrese su teléfono">
         </div>
         <div class="col-xs-12" style="margin: 50px 0px;">
           <input type="email" name="email" placeholder="Ingrese su correo electrónico">
@@ -110,5 +117,10 @@
     </div>
 
   </div>
+
+  <script>
+    $('.toast').toast('show');
+  </script>
+
 </body>
 </html>
