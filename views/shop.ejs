@@ -8,6 +8,7 @@
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="path/to/dist/feather.js"></script>
 </head>
 
 <style>
@@ -131,10 +132,10 @@
     </div>
   <% } %>
 
-  <div class="container shop-container">
+  <div class="container shop-container" style="margin-bottom: 40px;">
     <div class="row">
       <% products.map(item => { %>
-        <div class="col-xm-12 col-md-4">
+        <div class="col-xs-12 col-md-4">
             <div class="card">
               <a href=<%= `/products?name=${item.name.replace(/ /g, "-")}&price=${item.price}&img=${item.img.replace('products/', '')}&id=${item._id}}` %>><img src="<%= item.img %>" class="card-img-top img-fluid"></a>
               <div class="card-body" style="padding: 0;">
@@ -171,7 +172,7 @@
     </div>
 
     <% if(toShop) { %>
-      <a style="display: inline-block; border: 2px solid midnightblue; margin: 5px 0px;" href="/" class="btn float-left to-shop">
+      <a style="display: inline-block; border: 2px solid midnightblue; margin: 5px 0px 75px 0px;" href="/" class="btn float-left to-shop">
         <svg style="color: midnightblue; vertical-align: middle;" id="i-chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="15" height="15" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
           <path d="M20 30 L8 16 20 2" />
         </svg>
@@ -180,6 +181,19 @@
     <% } %>
 
   </div>
+
+  <footer class="container-fluid footer" style="background-color: midnightblue; height: 40px; position: fixed; bottom: 0px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-6 d-flex justify-content-center">
+          <a href="#"><img src="instagram.png" alt="instagram" width="30px;" style="position: relative; top: 5px; cursor: pointer;"></a>
+        </div>
+        <div class="col-6 d-flex justify-content-center">
+          <a href="#" target="_blank"><img src="facebook.png" alt="facebook" width="30px;" style="position: relative; top: 5px; cursor: pointer;"></a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script>
     $('.toast').toast('show');

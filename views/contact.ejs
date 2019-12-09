@@ -96,7 +96,7 @@
       </div>
     <% } %>
 
-    <div class="row d-flex justify-content-center form-container">
+    <div class="row d-flex justify-content-center form-container" style="margin-bottom: 60px;">
       <form action="/contact" method="POST" style="background-color: midnightblue; width: 400px; padding: 50px; border-radius: 50px 0px 50px 0px;">
         <div class="col-xs-12" style="margin: 25px 0px;">
           <input type="text" name="name" placeholder="Ingrese su nombre">
@@ -117,6 +117,19 @@
     </div>
 
   </div>
+
+  <footer class="container-fluid footer" style="background-color: midnightblue; height: 40px; position: fixed; bottom: 0px;">
+      <div class="container">
+        <div class="row">
+          <div class="col-6 d-flex justify-content-center">
+            <a href="#"><img src="instagram.png" alt="instagram" width="30px;" style="position: relative; top: 5px; cursor: pointer;"></a>
+          </div>
+          <div class="col-6 d-flex justify-content-center">
+            <a href="#" target="_blank"><img src="facebook.png" alt="facebook" width="30px;" style="position: relative; top: 5px; cursor: pointer;"></a>
+          </div>
+        </div>
+      </div>
+    </footer>
 
   <script>
     $('.toast').toast('show');
