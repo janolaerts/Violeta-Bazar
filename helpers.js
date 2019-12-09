@@ -8,7 +8,7 @@ module.exports = {
       service: 'gmail',
       host: 'mail.google.com',
       auth: {
-        user: 'VioletaBazarDeco@gmail.com',
+        user: 'VioletBazarperu@gmail.com',
         pass: keys.gmail.pass
       },
       secure: false,
@@ -19,7 +19,7 @@ module.exports = {
 
     let html = 
       `<h1 style="color: midnightblue;">Muchas gracias por su compra de Violeta Bazar!</h1>
-      <p style="color: midnightblue;>El pedido fue hecho el: ${date}</p>
+      <p style="color: midnightblue;">El pedido fue hecho el: ${date}</p>
       <p style="color: midnightblue;">Favor de comentar su dirección a la cual quiere recibir el pedido</p>
       <p style="color: midnightblue; text-decoration: underline;">Resumen de su pedido con Número <strong>${orderId}</strong> </p>
       
@@ -34,7 +34,7 @@ module.exports = {
       <h3 style="border: 2px solid midnightblue; color: midnightblue; width: 300px;">Precio total: s./${total}</h3>`;
 
     let mailOptions = {
-      from: 'VioletaBazarDeco@gmail.com',
+      from: 'VioletBazarperu@gmail.com',
       to: clientEmail,
       subject: `Su pedido de Violeta Bazar con número ${orderId}`,
       html: html
@@ -55,7 +55,7 @@ module.exports = {
       service: 'gmail',
       host: 'mail.google.com',
       auth: {
-        user: 'VioletaBazarDeco@gmail.com',
+        user: 'VioletBazarperu@gmail.com',
         pass: keys.gmail.pass
       },
       secure: false,
@@ -66,7 +66,7 @@ module.exports = {
 
     let html = 
     `<h1 style="color: midnightblue;">Hay un nuevo pedido de ${clientEmail}</h1>
-    <p style="color: midnightblue;>El pedido fue hecho el: ${date}</p>
+    <p style="color: midnightblue;">El pedido fue hecho el: ${date}</p>
     <p style="color: midnightblue; text-decoration: underline;">Resumen del pedido con Número <strong>${orderId}</strong></p>
     
     ${products.map(item => {
@@ -81,7 +81,7 @@ module.exports = {
 
     let mailOptions = {
       from: `${clientEmail}`,
-      to: 'VioletaBazarDeco@gmail.com',
+      to: 'VioletBazarperu@gmail.com',
       subject: `Hay un nuevo pedido con número ${orderId}`,
       html: html
     };
@@ -101,7 +101,7 @@ module.exports = {
       service: 'gmail',
       host: 'mail.google.com',
       auth: {
-        user: 'VioletaBazarDeco@gmail.com',
+        user: 'VioletBazarperu@gmail.com',
         pass: keys.gmail.pass
       },
       secure: false,
@@ -112,14 +112,14 @@ module.exports = {
 
     let html = 
     `<h3 style="color: midnightblue;">Muchas gracias por su mensaje a Violeta Bazar!</h3>
-    <p style="color: midnightblue;>Su mensaje fue enviado el: ${new Date()}</p>
+    <p style="color: midnightblue;">Su mensaje fue enviado el: ${new Date()}</p>
     <p style="color: midnightblue;">Mensaje: </p>
     <p style="color: midnightblue;"><strong>${info.message}</strong></p>
     
-    <p style="color: midnightblue;>Le responderemos en breve!</p>`;
+    <p style="color: midnightblue;">Le responderemos en breve!</p>`;
 
     let mailOptions = {
-      from: 'VioletaBazarDeco@gmail.com',
+      from: 'violetbazarperu@gmail.com',
       to: `${info.email}`,
       subject: `Muchas gracias por su mensaje!`,
       html: html

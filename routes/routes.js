@@ -140,7 +140,7 @@ router.post('/contact', urlencodedParser, (req, res) => {
       service: 'gmail',
       host: 'mail.google.com',
       auth: {
-        user: 'VioletaBazarDeco@gmail.com',
+        user: 'violetbazarperu@gmail.com',
         pass: keys.gmail.pass
       },
       secure: false,
@@ -151,13 +151,13 @@ router.post('/contact', urlencodedParser, (req, res) => {
 
     let html = 
     `<h3 style="color: midnightblue;">Hay un nuevo mensaje de <strong style="text-decoration: underline;">${info.name}</strong> con correo <strong>${info.email}</strong> y número de teléfono <strong style="text-decoration: underline;">${info.phone}</strong></h3>
-    <p style="color: midnightblue;>El pedido fue hecho el: ${new Date()}</p>
+    <p style="color: midnightblue;">El mensaje fue enviado el: ${new Date()}</p>
     <p style="color: midnightblue;">Mensaje: </p>
     <p style="color: midnightblue;"><strong>${info.message}</strong></p>`;
 
     let mailOptions = {
       from: `${info.email}`,
-      to: 'VioletaBazarDeco@gmail.com',
+      to: 'violetbazarperu@gmail.com',
       subject: `Hay un nuevo mensaje de ${info.name}`,
       html: html
     };
