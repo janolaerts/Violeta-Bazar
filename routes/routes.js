@@ -2,7 +2,7 @@ const router = require('express').Router();
 const Product = require('../mongodb/products-model');
 const Cart = require('../mongodb/cart-model');
 const bodyParser = require('body-parser');
-const keys = require('../keys');
+const keys = require('../config/keys');
 const stripe = require('stripe')(keys.stripe.secret);
 const nodemailer = require('nodemailer');
 const helpers = require('../helpers');
@@ -51,7 +51,7 @@ router.get('/cart', (req, res) => {
     items.forEach(item => {
       total = total += item.price;
     })
-    res.render('cart', { products: items, total: total });
+    res.render('cart', { products: items, total: total, stripePublishable: keys.stripe.publishable });
   })
 })
 

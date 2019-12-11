@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-const keys = require('./keys');
+const keys = require('./config/keys');
 
 module.exports = {
   mailToClient: (products, clientEmail, total, orderId, date) => {
