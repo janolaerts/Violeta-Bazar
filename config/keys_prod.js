@@ -1,6 +1,6 @@
 module.exports = {
   mongodb: {
-    dbURI: process.env.MONGODB_DB
+    dbURI: `${process.env.MONGODB_DB}`
   },
   stripe: {
     publishable: process.env.STRIPE_PUBLISHABLE_KEY,
