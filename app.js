@@ -22,7 +22,7 @@ app.listen(process.env.PORT || 3000, () => {
   console.log('app is listening to port 3000');
 })
 
-mongoose.connect(keys.mongodb.dbURI, { useNewUrlParser: true },  () => {
+mongoose.connect('mongodb+srv://User:PjHWMhZ3DxvNhH3m@products-cd5i4.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true },  () => {
   console.log('connected to mongodb');
 })
 
